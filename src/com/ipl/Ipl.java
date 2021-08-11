@@ -31,6 +31,8 @@ public class Ipl {
 		System.out.println("Matches Played Per Year:");
 		System.out.println(matchCount);
 		
+		matchesWonPerTeamPerYear(matches);
+		
 
 	}
 	
@@ -49,6 +51,32 @@ public class Ipl {
 			}
 		}
 		return matchesPlayedPerYear;
+	}
+	
+	public static void matchesWonPerTeamPerYear(List<Match> matches) {
+		HashMap<String, Integer> winner = new HashMap<String, Integer>();
+		HashMap<String, HashMap<String, Integer>> matchesWonPerTeamPerYear = new HashMap<String, HashMap<String, Integer>>();
+		
+		for(Match match : matches)
+		{
+			if(matchesWonPerTeamPerYear.containsKey(match.getSeason()))
+			{
+				//matchesWonPerTeamPerYear.put(match.getSeason(), winner);
+			}
+			else
+			{
+				if(winner.containsKey(match.getWinner()))
+				{
+					winner.put(match.getWinner(), winner.get(match.getWinner()) + 1);
+				}
+				else
+				{
+					winner.put(match.getWinner(), 1);
+				}
+				matchesWonPerTeamPerYear.put(match.getSeason(), winner);
+			}
+		}
+		System.out.println(matchesWonPerTeamPerYear);
 	}
 	
 	public static List<Match> getMatchData(){
