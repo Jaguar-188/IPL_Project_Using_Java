@@ -63,12 +63,13 @@ public class Ipl {
 		System.out.println("Matches Won Per Tear Per Year:");
 		System.out.println(wonCount);
 		
-		/* Extra Runs Conceded Per Team Per Year */
+		/* Extra Runs Conceded Per Team At Year 2016 */
 		String year2016 = "2016";
 		HashMap<String, Integer> extraRuns = extraRunsConcededPerTeamAt2016(matches,deliveries,year2016);
 		System.out.println("Extra Runs Conceded Per Team AT Year 2016:");
 		System.out.println(extraRuns);
 		
+		/* Top Ten Economical Bowlers At Year 2015 */
 		String year2015 = "2015";
 		topTenEconomicalBowlersAt2015(matches,deliveries,year2015);
 		
@@ -119,7 +120,6 @@ public class Ipl {
 			{
 				winnerPerYear.put(Winner,1);
 	            matchesWonPerTeamPerYear.put(Season, winnerPerYear);
-				//matchesWonPerTeamPerYear.get(Season).put(Winner, 1);
 			}
 		}
 		return matchesWonPerTeamPerYear;
@@ -164,9 +164,12 @@ public class Ipl {
 	
 	public static void topTenEconomicalBowlersAt2015(List<Match> matches,List<Delivery> deliveries,String year2015)
 	{
-		//System.out.println("Hi");
 		List<String> matchDataFiltered = new ArrayList<>();
-		HashMap<String, Integer> topTenEconomicalBowlers = new HashMap<String, Integer>();
+		HashMap<String, Double> totalRunsByEachBowler = new HashMap<String, Double>();
+		HashMap<String, Double> totalBowlsByEachBowler = new HashMap<String, Double>();
+		HashMap<String,Double> topEconomicalBowlers = new HashMap<String,Double>();
+		HashMap<String, Double> temp  = new HashMap<String,Double>();
+		
 		
 		for(Match match : matches)
 		{
@@ -175,7 +178,6 @@ public class Ipl {
 				matchDataFiltered.add(match.getMatchId());
 			}
 		}
-		
 		for(String id : matchDataFiltered)
 		{
 			String idFromMatch = id;
@@ -184,14 +186,38 @@ public class Ipl {
 				String idFromDelivery = delivery.getMatchId();
 				if(idFromMatch.equals(idFromDelivery))
 				{
-					
+					String bowler = delivery.getBowler();
+					String totalRuns = delivery.getTotalRuns();
+					String totalBalls = delivery.getBall();
+					if(totalRunsByEachBowler.containsKey(bowler))
+					{
+						totalRunsByEachBowler.put(bowler, totalRunsByEachBowler.get(bowler) + Double.parseDouble(totalRuns));
+						totalBowlsByEachBowler.put(bowler, totalBowlsByEachBowler.get(bowler) + Double.parseDouble(totalBalls));
+					}
+					else
+					{
+						totalRunsByEachBowler.put(bowler, Double.parseDouble(totalRuns));
+						totalBowlsByEachBowler.put(bowler,  Double.parseDouble(totalBalls));
+					}
 				}
 				
 			}
 			
 		}
-		//System.out.println(matchDataFiltered);
+
+		for(Map.Entry<String, Double> runs : totalRunsByEachBowler.entrySet())
+		{
+			for(Map.Entry<String, Double> balls : totalBowlsByEachBowler.entrySet())
+			{
+				if(runs.getKey().equals(balls.getKey()))
+				{
+					topEconomicalBowlers.put(runs.getKey(),runs.getValue()/balls.getValue());
+				}
+			}
+		}
+		System.out.println(topEconomicalBowlers);
 	}
+	
 	
 	public static List<Match> getMatchData()
 	{
