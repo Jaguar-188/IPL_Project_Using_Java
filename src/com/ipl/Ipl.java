@@ -97,25 +97,20 @@ public class Ipl {
 			{
 				if(matchesWonPerTeamPerYear.get(Season).containsKey(Winner))
 				{
-					winnerPerYear.put(Winner,winnerPerYear.get(Winner) + 1);	
-					//matchesWonPerTeamPerYear.put(Season, winnerPerYear);
+					matchesWonPerTeamPerYear.get(Season).put(Winner,matchesWonPerTeamPerYear.get(Season).get(Winner) + 1);
 				}
 				else
 				{
-					winnerPerYear.put(Winner,1);
-					//matchesWonPerTeamPerYear.put(Season,winnerPerYear);
+					matchesWonPerTeamPerYear.get(Season).put(Winner,1);
 				}
 			}
 			else
 			{
-				winnerPerYear.put(Winner,1);
-	            matchesWonPerTeamPerYear.put(Season, winnerPerYear);
-	            //System.out.println(matchesWonPerTeamPerYear);
+				matchesWonPerTeamPerYear.put(Season,new HashMap<String,Integer>());
+	            matchesWonPerTeamPerYear.get(Season).put(Winner,1);
 			}
 		}
-		System.out.println(winnerPerYear);
 		return matchesWonPerTeamPerYear;
-//		return null;
 	}
 	
 	public static HashMap<String, Integer> extraRunsConcededPerTeamAt2016(List<Match> matches, List<Delivery> deliveries, String year2016) 
