@@ -12,36 +12,12 @@ public class Ipl {
 	
 	private static final int matchId = 0;
 	private static final int season = 1;
-	private static final int city = 2;
-	private static final int date = 3;
-	private static final int team1 = 4;
-	private static final int team2 = 5;
-	private static final int tossWinner = 6;
-	private static final int tossDecision = 7;
-	private static final int result = 8;
-	private static final int dlApplied = 9;
 	private static final int winner = 10;
-	private static final int winByRuns = 11;
-	private static final int winByWickets = 12;
-	private static final int playerOfMatch = 13;
-	private static final int venue = 14;
 	
 	private static final int deliveryId = 0;
-	private static final int inning = 1;
-	private static final int battingTeam = 2;
 	private static final int bowlingTeam = 3;
-	private static final int over = 4;
 	private static final int ball = 5;
-	private static final int batsman = 6;
-	private static final int nonStriker = 7;
 	private static final int bowler = 8;
-	private static final int isSuperOver = 9;
-	private static final int wideRuns = 10;
-	private static final int byeRuns = 11;
-	private static final int legbyeRuns = 12;
-	private static final int noballRuns = 13;
-	private static final int penaltyRuns = 14;
-	private static final int batsmanRuns = 15;
 	private static final int extraRuns = 16;
 	private static final int totalRuns = 17;
 
@@ -94,7 +70,7 @@ public class Ipl {
 	public static HashMap<String, Integer> matchesPlayedPerYear(List<Match> matches) 
 	{
 		HashMap<String, Integer> matchesPlayedPerYear = new HashMap<>();
-		for(Match match:matches)
+		for(Match match : matches)
 		{
 			if(matchesPlayedPerYear.containsKey(match.getSeason()))
 			{
@@ -121,22 +97,25 @@ public class Ipl {
 			{
 				if(matchesWonPerTeamPerYear.get(Season).containsKey(Winner))
 				{
-					winnerPerYear.put(Winner, matchesWonPerTeamPerYear.get(Season).get(Winner) + 1);	
-					matchesWonPerTeamPerYear.put(Season, winnerPerYear);
+					winnerPerYear.put(Winner,winnerPerYear.get(Winner) + 1);	
+					//matchesWonPerTeamPerYear.put(Season, winnerPerYear);
 				}
 				else
 				{
 					winnerPerYear.put(Winner,1);
-					matchesWonPerTeamPerYear.put(Season,winnerPerYear);
+					//matchesWonPerTeamPerYear.put(Season,winnerPerYear);
 				}
 			}
 			else
 			{
 				winnerPerYear.put(Winner,1);
 	            matchesWonPerTeamPerYear.put(Season, winnerPerYear);
+	            //System.out.println(matchesWonPerTeamPerYear);
 			}
 		}
+		System.out.println(winnerPerYear);
 		return matchesWonPerTeamPerYear;
+//		return null;
 	}
 	
 	public static HashMap<String, Integer> extraRunsConcededPerTeamAt2016(List<Match> matches, List<Delivery> deliveries, String year2016) 
@@ -229,6 +208,7 @@ public class Ipl {
 				}
 			}
 		}
+		
 		List<Map.Entry<String, Double>> list = new ArrayList<>(topEconomicalBowlers.entrySet());
 		
 		Collections.sort(list, new Comparator<Map.Entry<String, Double>>() {
@@ -271,19 +251,7 @@ public class Ipl {
 					data = line.split(",");
 					match.setMatchId(data[matchId]);
 					match.setSeason(data[season]);
-					match.setCity(data[city]);
-					match.setDate(data[date]);
-					match.setTeam1(data[team1]);
-					match.setTeam2(data[team2]);
-					match.setTossWinner(data[tossWinner]);
-					match.setTossDecision(data[tossDecision]);
-					match.setResult(data[result]);
-					match.setDlApplied(data[dlApplied]);
 					match.setWinner(data[winner]);
-					match.setWinByRuns(data[winByRuns]);
-					match.setWinByWickets(data[winByWickets]);
-					match.setPlayerOfMatch(data[playerOfMatch]);
-					match.setVenue(data[venue]);
 					matches.add(match);
 				}
 				count = count + 1;
@@ -316,21 +284,9 @@ public class Ipl {
 				{
 					data = line.split(",");
 					delivery.setMatchId(data[deliveryId]);
-					delivery.setInning(data[inning]);
-					delivery.setBattingTeam(data[battingTeam]);
 					delivery.setBowlingTeam(data[bowlingTeam]);
-					delivery.setOver(data[over]);
 					delivery.setBall(data[ball]);
-					delivery.setBatsman(data[batsman]);
-					delivery.setNonStriker(data[nonStriker]);
 					delivery.setBowler(data[bowler]);
-					delivery.setIsSuperOver(data[isSuperOver]);
-					delivery.setWideRuns(data[wideRuns]);
-					delivery.setByeRuns(data[byeRuns]);
-					delivery.setLegbyeRuns(data[legbyeRuns]);
-					delivery.setNoballRuns(data[noballRuns]);
-					delivery.setPenaltyRuns(data[penaltyRuns]);
-					delivery.setBatsmanRuns(data[batsmanRuns]);
 					delivery.setExtraRuns(data[extraRuns]);
 					delivery.setTotalRuns(data[totalRuns]);
 					deliveries.add(delivery);
