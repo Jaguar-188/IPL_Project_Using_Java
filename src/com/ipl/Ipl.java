@@ -95,28 +95,31 @@ public class Ipl {
 	
 	public static HashMap<String, HashMap<String, Integer>> matchesWonPerTeamPerYear(List<Match> matches) 
 	{
-		HashMap<String, Integer> winner = new HashMap<String, Integer>();
+		HashMap<String, Integer> winnerPerYear = new HashMap<String, Integer>();
 		HashMap<String, HashMap<String, Integer>> matchesWonPerTeamPerYear = new HashMap<String, HashMap<String, Integer>>();
 		
 		for(Match match : matches)
 		{
-			
-			if(matchesWonPerTeamPerYear.containsKey(match.getSeason()))
+			String Season = match.getSeason();
+			String Winner = match.getWinner();
+			if(matchesWonPerTeamPerYear.containsKey(Season))
 			{
-
-				if(matchesWonPerTeamPerYear.get(match.getSeason()).containsKey(match.getWinner()))
+				if(matchesWonPerTeamPerYear.get(Season).containsKey(Winner))
 				{
-					matchesWonPerTeamPerYear.get(match.getSeason()).put(match.getWinner(), matchesWonPerTeamPerYear.get(match.getSeason()).get(match.getWinner()) + 1);
+					winnerPerYear.put(Winner, matchesWonPerTeamPerYear.get(Season).get(Winner) + 1);	
+					matchesWonPerTeamPerYear.put(Season, winnerPerYear);
 				}
 				else
 				{
-					matchesWonPerTeamPerYear.get(match.getSeason()).put(match.getWinner(), 1);
+					winnerPerYear.put(Winner,1);
+					matchesWonPerTeamPerYear.put(Season,winnerPerYear);
 				}
 			}
 			else
 			{
-				matchesWonPerTeamPerYear.put(match.getSeason(),winner);
-				matchesWonPerTeamPerYear.get(match.getSeason()).put(match.getWinner(), 1);
+				winnerPerYear.put(Winner,1);
+	            matchesWonPerTeamPerYear.put(Season, winnerPerYear);
+				//matchesWonPerTeamPerYear.get(Season).put(Winner, 1);
 			}
 		}
 		return matchesWonPerTeamPerYear;
