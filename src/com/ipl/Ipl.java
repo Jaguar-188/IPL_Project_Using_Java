@@ -47,34 +47,48 @@ public class Ipl {
 
 	public static void main(String[] args) {
 		
-		/* Matches data */
 		List<Match> matches = getMatchData();
 		
-		/* Deliveries data */
 		List<Delivery> deliveries =  getDeliveryData();
 		
-		/* Matches Played Per Year */
-		HashMap<String, Integer> matchCount = matchesPlayedPerYear(matches);
+		HashMap<String, Integer> matchesPlayedPerYear = matchesPlayedPerYear(matches);
 		System.out.println("Matches Played Per Year:");
-		System.out.println(matchCount);
+		for(Map.Entry<String, Integer> entry : matchesPlayedPerYear.entrySet())
+		{
+			System.out.println("\t"+entry);
+			
+		}
 		
-		/* Matches Won Per Team Per Year */
-		HashMap<String, HashMap<String, Integer>> wonCount = matchesWonPerTeamPerYear(matches);
+		System.out.println("\n");
+		
+		HashMap<String, HashMap<String, Integer>> matchesWonPerTeamPerYear = matchesWonPerTeamPerYear(matches);
 		System.out.println("Matches Won Per Tear Per Year:");
-		System.out.println(wonCount);
+		for(Map.Entry<String, HashMap<String, Integer>> entry : matchesWonPerTeamPerYear.entrySet())
+		{
+			System.out.println("\t"+entry);
+			
+		}
 		
-		/* Extra Runs Conceded Per Team At Year 2016 */
+		System.out.println("\n");
+		
 		String year2016 = "2016";
-		HashMap<String, Integer> extraRuns = extraRunsConcededPerTeamAt2016(matches,deliveries,year2016);
+		HashMap<String, Integer> extraRunsConcededPerTeam = extraRunsConcededPerTeamAt2016(matches,deliveries,year2016);
 		System.out.println("Extra Runs Conceded Per Team AT Year 2016:");
-		System.out.println(extraRuns);
+		for(Map.Entry<String, Integer> entry : extraRunsConcededPerTeam.entrySet())
+		{
+			System.out.println("\t"+entry);
+			
+		}
 		
-		/* Top Ten Economical Bowlers At Year 2015 */
+		System.out.println("\n");
+		
 		String year2015 = "2015";
-		topTenEconomicalBowlersAt2015(matches,deliveries,year2015);
-		
-		
-
+		HashMap<String, Double> topTenEconomicalBowlers  = topTenEconomicalBowlersAt2015(matches,deliveries,year2015);
+		System.out.println("Top Ten Economical Bowlers AT Year 2016:");
+		for(Map.Entry<String, Double> entry : topTenEconomicalBowlers.entrySet())
+		{
+			System.out.println("\t"+entry);
+		}
 	}
 	
 	public static HashMap<String, Integer> matchesPlayedPerYear(List<Match> matches) 
@@ -162,13 +176,13 @@ public class Ipl {
 		return extraRunsConceded;	
 	}
 	
-	public static void topTenEconomicalBowlersAt2015(List<Match> matches,List<Delivery> deliveries,String year2015)
+	public static HashMap<String, Double> topTenEconomicalBowlersAt2015(List<Match> matches,List<Delivery> deliveries,String year2015)
 	{
 		List<String> matchDataFiltered = new ArrayList<>();
 		HashMap<String, Double> totalRunsByEachBowler = new HashMap<String, Double>();
 		HashMap<String, Double> totalBowlsByEachBowler = new HashMap<String, Double>();
 		HashMap<String,Double> topEconomicalBowlers = new HashMap<String,Double>();
-		HashMap<String, Double> temp  = new HashMap<String,Double>();
+		HashMap<String, Double> topTenEconomicalBowlers  = new HashMap<String,Double>();
 		
 		
 		for(Match match : matches)
@@ -211,11 +225,30 @@ public class Ipl {
 			{
 				if(runs.getKey().equals(balls.getKey()))
 				{
-					topEconomicalBowlers.put(runs.getKey(),runs.getValue()/balls.getValue());
+					topEconomicalBowlers.put(runs.getKey(),runs.getValue()/(balls.getValue()/6));
 				}
 			}
 		}
-		System.out.println(topEconomicalBowlers);
+		List<Map.Entry<String, Double>> list = new ArrayList<>(topEconomicalBowlers.entrySet());
+		
+		Collections.sort(list, new Comparator<Map.Entry<String, Double>>() {
+			public int compare(Map.Entry<String, Double> c1,Map.Entry<String, Double> c2)
+			{
+				return c1.getValue().compareTo(c2.getValue());
+			}
+		});
+		
+		int temp = 0;
+		for(Map.Entry<String, Double> entry : list)
+		{
+			temp++;
+			if(temp == 10)
+			{
+				break;
+			}
+			topTenEconomicalBowlers.put(entry.getKey(), entry.getValue());
+		}
+		return topTenEconomicalBowlers;
 	}
 	
 	
