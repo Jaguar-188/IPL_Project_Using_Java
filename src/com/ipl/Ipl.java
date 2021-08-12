@@ -32,7 +32,6 @@ public class Ipl {
 		for(Map.Entry<String, Integer> entry : matchesPlayedPerYear.entrySet())
 		{
 			System.out.println("\t"+entry);
-			
 		}
 		
 		System.out.println("\n");
@@ -42,7 +41,6 @@ public class Ipl {
 		for(Map.Entry<String, HashMap<String, Integer>> entry : matchesWonPerTeamPerYear.entrySet())
 		{
 			System.out.println("\t"+entry);
-			
 		}
 		
 		System.out.println("\n");
@@ -53,7 +51,6 @@ public class Ipl {
 		for(Map.Entry<String, Integer> entry : extraRunsConcededPerTeam.entrySet())
 		{
 			System.out.println("\t"+entry);
-			
 		}
 		
 		System.out.println("\n");
