@@ -1,14 +1,18 @@
 package com.ipl;
 import com.ipl.model.*;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.util.*;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.*;
+import org.json.JSONObject;
 
 public class Ipl {
 	
 	private static final String matchesPath = "./data/matches.csv"; 
 	private static final String deliveriesPath = "./data/deliveries.csv";
+	public static final String matchesPlayedPerYearFilePath = "./jsonResults/matchesPlayedPerYear.json";
 	
 	private static final int matchId = 0;
 	private static final int season = 1;
@@ -28,6 +32,23 @@ public class Ipl {
 		List<Delivery> deliveries =  getDeliveryData();
 		
 		HashMap<String, Integer> matchesPlayedPerYear = matchesPlayedPerYear(matches);
+		
+		try
+		{
+			File file = new File(matchesPlayedPerYearFilePath);
+			JSONObject jsonobj = new JSONObject(matchesPlayedPerYear);
+			ObjectMapper mapper = new ObjectMapper();
+			mapper.writeValue(file, jsonobj);
+		}
+		catch (JsonGenerationException e)
+		{
+			e.printStackTrace();
+		} 
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		
 		System.out.println("Matches Played Per Year:");
 		for(Map.Entry<String, Integer> entry : matchesPlayedPerYear.entrySet())
 		{
@@ -37,6 +58,8 @@ public class Ipl {
 		System.out.println("\n");
 		
 		HashMap<String, HashMap<String, Integer>> matchesWonPerTeamPerYear = matchesWonPerTeamPerYear(matches);
+		JSONObject jsonobj = new JSONObject(matchesWonPerTeamPerYear);
+		System.out.println(jsonobj);
 		System.out.println("Matches Won Per Tear Per Year:");
 		for(Map.Entry<String, HashMap<String, Integer>> entry : matchesWonPerTeamPerYear.entrySet())
 		{
