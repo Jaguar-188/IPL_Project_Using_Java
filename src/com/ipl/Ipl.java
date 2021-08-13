@@ -69,13 +69,14 @@ public class Ipl {
 		HashMap<String, Integer> matchesPlayedPerYear = new HashMap<>();
 		for(Match match : matches)
 		{
-			if(matchesPlayedPerYear.containsKey(match.getSeason()))
+			String Season = match.getSeason();
+			if(matchesPlayedPerYear.containsKey(Season))
 			{
-				matchesPlayedPerYear.put(match.getSeason(),matchesPlayedPerYear.get(match.getSeason()) + 1);
+				matchesPlayedPerYear.put(Season,matchesPlayedPerYear.get(Season) + 1);
 			}
 			else
 			{
-				matchesPlayedPerYear.put(match.getSeason(), 1);
+				matchesPlayedPerYear.put(Season, 1);
 			}
 		}
 		return matchesPlayedPerYear;
