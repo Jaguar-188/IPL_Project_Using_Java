@@ -24,6 +24,9 @@ class matchesWonPerTeamPerYearTest {
 		/* Checking for the Wrong Output */
 		assertNotEquals(Ipl.matchesWonPerTeamPerYear(matches), wrongOutput);
 		
+		/* Checking for the size of data*/
+		assertEquals(matches.size(), 636);
+		
 	}
 
 }

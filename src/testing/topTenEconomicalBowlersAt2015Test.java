@@ -29,6 +29,10 @@ class topTenEconomicalBowlersAt2015Test {
 		
 		/* Checking for the Wrong Output */
 		assertNotEquals(Ipl.topTenEconomicalBowlersAt2015(matches,deliveries,year2015), wrongOutput);
+		
+		/* Checking for the size of data*/
+		assertEquals(matches.size(), 636);
+		assertEquals(deliveries.size(), 150460);
 	}
 
 }

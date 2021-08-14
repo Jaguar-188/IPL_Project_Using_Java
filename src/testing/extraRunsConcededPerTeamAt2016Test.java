@@ -28,6 +28,10 @@ class extraRunsConcededPerTeamAt2016Test {
 		
 		/* Checking for the Wrong Output */
 		assertNotEquals(Ipl.extraRunsConcededPerTeamAt2016(matches,deliveries,year2016), wrongOutput);
+		
+		/* Checking for the size of data*/
+		assertEquals(matches.size(), 636);
+		assertEquals(deliveries.size(), 150460);
 	}
 
 }
