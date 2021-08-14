@@ -4,6 +4,8 @@ import com.ipl.model.*;
 import java.io.*;
 import java.util.*;
 
+import javax.swing.text.html.HTMLDocument.Iterator;
+
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.*;
 import org.json.JSONObject;
@@ -32,59 +34,34 @@ public class Ipl {
 		List<Delivery> deliveries =  getDeliveryData();
 		
 		HashMap<String, Integer> matchesPlayedPerYear = matchesPlayedPerYear(matches);
-		
-		try
-		{
-			File file = new File(matchesPlayedPerYearFilePath);
-			JSONObject jsonobj = new JSONObject(matchesPlayedPerYear);
-			ObjectMapper mapper = new ObjectMapper();
-			mapper.writeValue(file, jsonobj);
-		}
-		catch (JsonGenerationException e)
-		{
-			e.printStackTrace();
-		} 
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		
+		JSONObject matchesPlayedPerYearJson = new JSONObject(matchesPlayedPerYear);
 		System.out.println("Matches Played Per Year:");
-		for(Map.Entry<String, Integer> entry : matchesPlayedPerYear.entrySet())
-		{
-			System.out.println("\t"+entry);
-		}
+		System.out.println(matchesPlayedPerYearJson);
 		
 		System.out.println("\n");
 		
 		HashMap<String, HashMap<String, Integer>> matchesWonPerTeamPerYear = matchesWonPerTeamPerYear(matches);
-		JSONObject jsonobj = new JSONObject(matchesWonPerTeamPerYear);
-		System.out.println(jsonobj);
+		JSONObject matchesWonPerTeamPerYearJson = new JSONObject(matchesWonPerTeamPerYear);
 		System.out.println("Matches Won Per Tear Per Year:");
-		for(Map.Entry<String, HashMap<String, Integer>> entry : matchesWonPerTeamPerYear.entrySet())
-		{
-			System.out.println("\t"+entry);
-		}
+		System.out.println(matchesWonPerTeamPerYearJson);
 		
 		System.out.println("\n");
 		
 		String year2016 = "2016";
 		HashMap<String, Integer> extraRunsConcededPerTeam = extraRunsConcededPerTeamAt2016(matches,deliveries,year2016);
+		JSONObject extraRunsConcededPerTeamJson = new JSONObject(extraRunsConcededPerTeam);
 		System.out.println("Extra Runs Conceded Per Team AT Year 2016:");
-		for(Map.Entry<String, Integer> entry : extraRunsConcededPerTeam.entrySet())
-		{
-			System.out.println("\t"+entry);
-		}
+		System.out.println(extraRunsConcededPerTeamJson);
+		
 		
 		System.out.println("\n");
 		
 		String year2015 = "2015";
 		HashMap<String, Double> topTenEconomicalBowlers  = topTenEconomicalBowlersAt2015(matches,deliveries,year2015);
+		JSONObject topTenEconomicalBowlersJson = new JSONObject(topTenEconomicalBowlers);
 		System.out.println("Top Ten Economical Bowlers AT Year 2016:");
-		for(Map.Entry<String, Double> entry : topTenEconomicalBowlers.entrySet())
-		{
-			System.out.println("\t"+entry);
-		}
+		System.out.println(topTenEconomicalBowlersJson);
+
 	}
 	
 	public static HashMap<String, Integer> matchesPlayedPerYear(List<Match> matches) 
