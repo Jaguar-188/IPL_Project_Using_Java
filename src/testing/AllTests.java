@@ -5,8 +5,8 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({matchesPlayedPerYearTest.class,matchesWonPerTeamPerYear.class,
-	extraRunsConcededPerTeamAt2016.class,topTenEconomicalBowlersAt2015.class})
+@SuiteClasses({matchesPlayedPerYearTest.class,matchesWonPerTeamPerYearTest.class,
+	extraRunsConcededPerTeamAt2016Test.class,topTenEconomicalBowlersAt2015Test.class})
 public class AllTests {
 
 }

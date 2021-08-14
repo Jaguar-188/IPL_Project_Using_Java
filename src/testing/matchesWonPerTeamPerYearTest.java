@@ -7,7 +7,7 @@ import java.util.*;
 
 import org.junit.jupiter.api.Test;
 
-class matchesWonPerTeamPerYear {
+class matchesWonPerTeamPerYearTest {
 
 	@Test
 	void test() {

@@ -11,7 +11,7 @@ import com.ipl.Ipl;
 import com.ipl.model.Delivery;
 import com.ipl.model.Match;
 
-class topTenEconomicalBowlersAt2015 {
+class topTenEconomicalBowlersAt2015Test {
 
 	@Test
 	void test() {

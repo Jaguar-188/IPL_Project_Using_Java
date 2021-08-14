@@ -11,7 +11,7 @@ import com.ipl.Ipl;
 import com.ipl.model.Delivery;
 import com.ipl.model.Match;
 
-class extraRunsConcededPerTeamAt2016 {
+class extraRunsConcededPerTeamAt2016Test {
 
 	@Test
 	void test() {
