@@ -38,18 +38,8 @@ public class Ipl {
 		System.out.println("Matches Played Per Year:");
 		System.out.println(matchesPlayedPerYearJson);
 		matchesPlayedPerYearArray.put(matchesPlayedPerYearJson);
+		storeDataToJsonFile(matchesPlayedPerYearFilePath,matchesPlayedPerYearArray);
 		
-		try
-		{
-			FileWriter file = new FileWriter(matchesPlayedPerYearFilePath);
-			file.write(matchesPlayedPerYearArray.toString());
-			System.out.println("Successfully Write data to file..");
-			file.close();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
 		System.out.println("\n");
 		
 		HashMap<String, HashMap<String, Integer>> matchesWonPerTeamPerYear = matchesWonPerTeamPerYear(matches);
@@ -58,18 +48,8 @@ public class Ipl {
 		System.out.println("Matches Won Per Tear Per Year:");
 		System.out.println(matchesWonPerTeamPerYearJson);
 		matchesWonPerTeamPerYearArray.put(matchesWonPerTeamPerYearJson);
-		
-		try
-		{
-			FileWriter file = new FileWriter(matchesWonPerTeamPerYearFilePath);
-			file.write(matchesWonPerTeamPerYearArray.toString());
-			System.out.println("Successfully Write data to file..");
-			file.close();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+		storeDataToJsonFile(matchesWonPerTeamPerYearFilePath,matchesWonPerTeamPerYearArray);
+
 		System.out.println("\n");
 		
 		String year2016 = "2016";
@@ -79,18 +59,8 @@ public class Ipl {
 		System.out.println("Extra Runs Conceded Per Team AT Year 2016:");
 		System.out.println(extraRunsConcededPerTeamJson);
 		extraRunsConcededPerTeamArray.put(extraRunsConcededPerTeamJson);
+		storeDataToJsonFile(extraRunsConcededPerTeamFilePath,extraRunsConcededPerTeamArray);
 		
-		try
-		{
-			FileWriter file = new FileWriter(extraRunsConcededPerTeamFilePath);
-			file.write(extraRunsConcededPerTeamArray.toString());
-			System.out.println("Successfully Write data to file..");
-			file.close();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
 		System.out.println("\n");
 		
 		String year2015 = "2015";
@@ -100,18 +70,8 @@ public class Ipl {
 		System.out.println("Top Ten Economical Bowlers AT Year 2015:");
 		System.out.println(topTenEconomicalBowlersJson);
 		topTenEconomicalBowlersArray.put(topTenEconomicalBowlersJson);
+		storeDataToJsonFile(topTenEconomicalBowlersFilePath,topTenEconomicalBowlersArray);
 		
-		try
-		{
-			FileWriter file = new FileWriter(topTenEconomicalBowlersFilePath);
-			file.write(topTenEconomicalBowlersArray.toString());
-			System.out.println("Successfully Write data to file..");
-			file.close();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
 	}
 	
 	public static HashMap<String, Integer> matchesPlayedPerYear(List<Match> matches) 
@@ -344,6 +304,21 @@ public class Ipl {
 			e.printStackTrace();
 		}
 		return deliveries;
+	}
+	
+	public static void storeDataToJsonFile(String filePath, JSONArray jsonArray)
+	{
+		try
+		{
+			FileWriter file = new FileWriter(filePath);
+			file.write(jsonArray.toString());
+			System.out.println("Successfully Write data to file..");
+			file.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 }
