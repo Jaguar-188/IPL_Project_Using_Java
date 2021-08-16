@@ -2,6 +2,7 @@ package com.ipl;
 import com.ipl.model.*;
 
 import java.io.*;
+
 import java.util.*;
 import org.json.JSONObject;
 import org.json.JSONArray;
@@ -77,6 +78,10 @@ public class Ipl {
 	public static HashMap<String, Integer> matchesPlayedPerYear(List<Match> matches) 
 	{
 		HashMap<String, Integer> matchesPlayedPerYear = new HashMap<>();
+		if(matches.equals(null))
+		{
+			return null;
+		}
 		for(Match match : matches)
 		{
 			String Season = match.getSeason();
@@ -96,7 +101,10 @@ public class Ipl {
 	{
 		HashMap<String, Integer> winnerPerYear = new HashMap<String, Integer>();
 		HashMap<String, HashMap<String, Integer>> matchesWonPerTeamPerYear = new HashMap<String, HashMap<String, Integer>>();
-		
+		if(matches.equals(null))
+		{
+			return null;
+		}
 		for(Match match : matches)
 		{
 			String Season = match.getSeason();
@@ -125,7 +133,10 @@ public class Ipl {
 	{
 		List<String> matchDataFiltered = new ArrayList<>();
 		HashMap<String, Integer> extraRunsConceded = new HashMap<String, Integer>();
-		
+		if(matches.equals(null) && deliveries.equals(null) && year2016.equals(null))
+		{
+			return null;
+		}
 		for(Match match : matches)
 		{
 			if(match.getSeason().equals(year2016))
@@ -166,7 +177,10 @@ public class Ipl {
 		HashMap<String,Double> topEconomicalBowlers = new HashMap<String,Double>();
 		HashMap<String, Double> topTenEconomicalBowlers  = new HashMap<String,Double>();
 		
-		
+		if(matches.equals(null) && deliveries.equals(null) && year2015.equals(null))
+		{
+			return null;
+		}
 		for(Match match : matches)
 		{
 			if(match.getSeason().equals(year2015))
