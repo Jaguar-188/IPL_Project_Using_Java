@@ -18,14 +18,14 @@ class matchesWonPerTeamPerYearTest {
 		
 		matchesPlayedPerTeamPerYear = Ipl.matchesWonPerTeamPerYear(matches);
 		
+		/* Checking for the size of data*/
+		assertEquals(matches.size(), 636);
+		
 		/* Checking For the Correct Output */
 		assertEquals(Ipl.matchesWonPerTeamPerYear(matches), matchesPlayedPerTeamPerYear);
 		
 		/* Checking for the Wrong Output */
 		assertNotEquals(Ipl.matchesWonPerTeamPerYear(matches), wrongOutput);
-		
-		/* Checking for the size of data*/
-		assertEquals(matches.size(), 636);
 		
 	}
 

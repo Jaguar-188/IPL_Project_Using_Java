@@ -2,6 +2,7 @@ package testing;
 
 import com.ipl.*;
 import com.ipl.model.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.*;
 import org.junit.jupiter.api.Test;
@@ -17,14 +18,16 @@ class matchesPlayedPerYearTest {
 		
 		matchesPlayedPerYear = Ipl.matchesPlayedPerYear(matches); 
 		
+		
+		/* Checking for the size of data*/
+		assertEquals(matches.size(), 636);
+		
 		/* Checking For the Correct Output */
 		assertEquals(Ipl.matchesPlayedPerYear(matches), matchesPlayedPerYear);
 		
 		/* Checking for the Wrong Output */
 		assertNotEquals(Ipl.matchesPlayedPerYear(matches), wrongOutput);
 		
-		/* Checking for the size of data*/
-		assertEquals(matches.size(), 636);
 	}
 
 }

@@ -4,12 +4,16 @@ import com.ipl.model.*;
 import java.io.*;
 import java.util.*;
 import org.json.JSONObject;
+import org.json.JSONArray;
 
 public class Ipl {
 	
 	private static final String matchesPath = "./data/matches.csv"; 
 	private static final String deliveriesPath = "./data/deliveries.csv";
 	public static final String matchesPlayedPerYearFilePath = "./jsonResults/matchesPlayedPerYear.json";
+	public static final String matchesWonPerTeamPerYearFilePath = "./jsonResults/matchesWonPerTeamPerYear.json";
+	public static final String extraRunsConcededPerTeamFilePath = "./jsonResults/extraRunsConcededPerTeam.json";
+	public static final String topTenEconomicalBowlersFilePath = "./jsonResults/topTenEconomicalBowlers.json";
 	
 	private static final int matchId = 0;
 	private static final int season = 1;
@@ -30,33 +34,84 @@ public class Ipl {
 		
 		HashMap<String, Integer> matchesPlayedPerYear = matchesPlayedPerYear(matches);
 		JSONObject matchesPlayedPerYearJson = new JSONObject(matchesPlayedPerYear);
+		JSONArray matchesPlayedPerYearArray = new JSONArray();
 		System.out.println("Matches Played Per Year:");
 		System.out.println(matchesPlayedPerYearJson);
+		matchesPlayedPerYearArray.put(matchesPlayedPerYearJson);
 		
+		try
+		{
+			FileWriter file = new FileWriter(matchesPlayedPerYearFilePath);
+			file.write(matchesPlayedPerYearArray.toString());
+			System.out.println("Successfully Write data to file..");
+			file.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		System.out.println("\n");
 		
 		HashMap<String, HashMap<String, Integer>> matchesWonPerTeamPerYear = matchesWonPerTeamPerYear(matches);
 		JSONObject matchesWonPerTeamPerYearJson = new JSONObject(matchesWonPerTeamPerYear);
+		JSONArray matchesWonPerTeamPerYearArray = new JSONArray();
 		System.out.println("Matches Won Per Tear Per Year:");
 		System.out.println(matchesWonPerTeamPerYearJson);
+		matchesWonPerTeamPerYearArray.put(matchesWonPerTeamPerYearJson);
 		
+		try
+		{
+			FileWriter file = new FileWriter(matchesWonPerTeamPerYearFilePath);
+			file.write(matchesWonPerTeamPerYearArray.toString());
+			System.out.println("Successfully Write data to file..");
+			file.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		System.out.println("\n");
 		
 		String year2016 = "2016";
-		HashMap<String, Integer> extraRunsConcededPerTeam = extraRunsConcededPerTeamAt2016(matches,deliveries,year2016);
+		HashMap<String, Integer> extraRunsConcededPerTeam = extraRunsConcededPerTeam(matches,deliveries,year2016);
 		JSONObject extraRunsConcededPerTeamJson = new JSONObject(extraRunsConcededPerTeam);
+		JSONArray extraRunsConcededPerTeamArray = new JSONArray();
 		System.out.println("Extra Runs Conceded Per Team AT Year 2016:");
 		System.out.println(extraRunsConcededPerTeamJson);
+		extraRunsConcededPerTeamArray.put(extraRunsConcededPerTeamJson);
 		
-		
+		try
+		{
+			FileWriter file = new FileWriter(extraRunsConcededPerTeamFilePath);
+			file.write(extraRunsConcededPerTeamArray.toString());
+			System.out.println("Successfully Write data to file..");
+			file.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		System.out.println("\n");
 		
 		String year2015 = "2015";
-		HashMap<String, Double> topTenEconomicalBowlers  = topTenEconomicalBowlersAt2015(matches,deliveries,year2015);
+		HashMap<String, Double> topTenEconomicalBowlers  = topTenEconomicalBowlers(matches,deliveries,year2015);
 		JSONObject topTenEconomicalBowlersJson = new JSONObject(topTenEconomicalBowlers);
+		JSONArray topTenEconomicalBowlersArray = new JSONArray();
 		System.out.println("Top Ten Economical Bowlers AT Year 2015:");
 		System.out.println(topTenEconomicalBowlersJson);
-
+		topTenEconomicalBowlersArray.put(topTenEconomicalBowlersJson);
+		
+		try
+		{
+			FileWriter file = new FileWriter(topTenEconomicalBowlersFilePath);
+			file.write(topTenEconomicalBowlersArray.toString());
+			System.out.println("Successfully Write data to file..");
+			file.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	public static HashMap<String, Integer> matchesPlayedPerYear(List<Match> matches) 
@@ -106,7 +161,7 @@ public class Ipl {
 		return matchesWonPerTeamPerYear;
 	}
 	
-	public static HashMap<String, Integer> extraRunsConcededPerTeamAt2016(List<Match> matches, List<Delivery> deliveries, String year2016) 
+	public static HashMap<String, Integer> extraRunsConcededPerTeam(List<Match> matches, List<Delivery> deliveries, String year2016) 
 	{
 		List<String> matchDataFiltered = new ArrayList<>();
 		HashMap<String, Integer> extraRunsConceded = new HashMap<String, Integer>();
@@ -143,7 +198,7 @@ public class Ipl {
 		return extraRunsConceded;	
 	}
 	
-	public static HashMap<String, Double> topTenEconomicalBowlersAt2015(List<Match> matches,List<Delivery> deliveries,String year2015)
+	public static HashMap<String, Double> topTenEconomicalBowlers(List<Match> matches,List<Delivery> deliveries,String year2015)
 	{
 		List<String> matchDataFiltered = new ArrayList<>();
 		HashMap<String, Double> totalRunsByEachBowler = new HashMap<String, Double>();

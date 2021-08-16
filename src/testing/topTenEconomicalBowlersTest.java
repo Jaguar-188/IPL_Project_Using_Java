@@ -11,7 +11,7 @@ import com.ipl.Ipl;
 import com.ipl.model.Delivery;
 import com.ipl.model.Match;
 
-class topTenEconomicalBowlersAt2015Test {
+class topTenEconomicalBowlersTest {
 
 	@Test
 	void test() {
@@ -22,17 +22,19 @@ class topTenEconomicalBowlersAt2015Test {
 		List<Delivery> deliveries = Ipl.getDeliveryData();
 		String year2015 = "2015";
 		
-		topTenEconomicalBowlers = Ipl.topTenEconomicalBowlersAt2015(matches,deliveries,year2015);
-		
-		/* Checking For the Correct Output */
-		assertEquals(Ipl.topTenEconomicalBowlersAt2015(matches,deliveries,year2015), topTenEconomicalBowlers);
-		
-		/* Checking for the Wrong Output */
-		assertNotEquals(Ipl.topTenEconomicalBowlersAt2015(matches,deliveries,year2015), wrongOutput);
+		topTenEconomicalBowlers = Ipl.topTenEconomicalBowlers(matches,deliveries,year2015);
 		
 		/* Checking for the size of data*/
 		assertEquals(matches.size(), 636);
 		assertEquals(deliveries.size(), 150460);
+		
+		/* Checking For the Correct Output */
+		assertEquals(Ipl.topTenEconomicalBowlers(matches,deliveries,year2015), topTenEconomicalBowlers);
+		
+		/* Checking for the Wrong Output */
+		assertNotEquals(Ipl.topTenEconomicalBowlers(matches,deliveries,year2015), wrongOutput);
+		
+		
 	}
 
 }
