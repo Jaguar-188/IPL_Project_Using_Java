@@ -53,6 +53,20 @@ class extraRunsConcededPerTeamTest {
 		
 		assertThrows(NullPointerException.class, () -> Ipl.extraRunsConcededPerTeam(null,null,null),"This should throw an NullPointerException");
 	}
+	
+	@Test
+	@DisplayName("Test for different year")
+	void testForDifferentYear() {
+		
+		HashMap<String, Integer> extraRunsConcededPerTeamAt2014 = new HashMap<>();
+		String year2014 = "2014";
+		
+		extraRunsConcededPerTeamAt2014 = Ipl.extraRunsConcededPerTeam(matches,deliveries,year2014);
+		
+		assertEquals(Ipl.extraRunsConcededPerTeam(matches,deliveries,year2014), extraRunsConcededPerTeamAt2014,"This should not throw an error when valid data is passed.");
+	}
+	
+	
 
 
 }

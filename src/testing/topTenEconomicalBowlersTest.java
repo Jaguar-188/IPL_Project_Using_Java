@@ -53,5 +53,17 @@ class topTenEconomicalBowlersTest {
 		
 		assertThrows(NullPointerException.class, () -> Ipl.topTenEconomicalBowlers(null,null,null),"This should throw an NullPointerException");
 	}
+	
+	@Test
+	@DisplayName("Test for different year")
+	void testForDifferentYear() {
+		
+		HashMap<String, Double> topTenEconomicalBowlersAt2017 = new HashMap<>();
+		String year2017 = "2017";
+		
+		topTenEconomicalBowlersAt2017 = Ipl.topTenEconomicalBowlers(matches,deliveries,year2017);
+		
+		assertEquals(Ipl.topTenEconomicalBowlers(matches,deliveries,year2017), topTenEconomicalBowlersAt2017,"This should not throw an error when valid data is passed.");
+	}
 
 }

@@ -49,47 +49,5 @@ class matchesPlayedPerYearTest {
 		
 		assertThrows(NullPointerException.class, () -> Ipl.matchesPlayedPerYear(null),"This should throw an NullPointerException");
 	}
-	
-//	@Test
-//	@DisplayName("Test to check for Dummy Data")
-//	void testForDummyData() {
-//		
-//		final int matchId = 0;
-//		final int season = 1;
-//		final int winner = 10;
-//		final String matchesPath = "./testData/testMatches.csv";
-//		
-//		List<Match> dummyMatchData = new ArrayList<>();
-//		
-//		try 
-//		{
-//			String line = "";
-//			String data[];
-//			int count = 0;
-//			FileReader file = new FileReader(matchesPath);
-//			BufferedReader br = new BufferedReader(file);
-//			while((line = br.readLine()) != null)
-//			{
-//				Match match = new Match();
-//				if(count != 0)
-//				{
-//					data = line.split(",");
-//					match.setMatchId(data[matchId]);
-//					match.setSeason(data[season]);
-//					match.setWinner(data[winner]);
-//					dummyMatchData.add(match);
-//				}
-//				count = count + 1;
-//			}
-//			br.close();
-//			file.close();
-//		}
-//		catch(Exception e)
-//		{
-//			e.printStackTrace();
-//		}
-//		
-//		assertEquals(Ipl.matchesPlayedPerYear(dummyMatchData), Ipl.matchesPlayedPerYear(dummyMatchData));
-//	}
 
 }
