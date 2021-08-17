@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 class matchesPlayedPerYearTest {
 	
 	List<Match> matches = Ipl.getMatchData();
+	List<Match> sublistMatches = matches.subList(0, 10);
 
 	@Test
 	@DisplayName("Test to check for valid data..")
@@ -22,25 +23,25 @@ class matchesPlayedPerYearTest {
 		
 		HashMap<String, Integer> matchesPlayedPerYear = new HashMap<>();
 		
-		matchesPlayedPerYear = Ipl.matchesPlayedPerYear(matches); 
-		
-		assertEquals(Ipl.matchesPlayedPerYear(matches), matchesPlayedPerYear,"This should not throw an error when valid data is passed.");
+		matchesPlayedPerYear.put("2017", 10);
+
+		assertEquals(Ipl.matchesPlayedPerYear(sublistMatches), matchesPlayedPerYear,"This should not throw an error when valid data is passed.");
 	}
 	
 	@Test
-	@DisplayName("Test to check for not equal data..")
+	@DisplayName("Test to check if returned data is null or not")
 	void testForWrongData() {
 		
-		HashMap<String, Integer> wrongOutput = null;
-		
-		assertNotEquals(Ipl.matchesPlayedPerYear(matches), wrongOutput,"This should throw an error when Invalid data is passed.");
+		assertNotNull(Ipl.matchesPlayedPerYear(matches),"This should throw an error when Invalid data is passed.");
 	}
 	
 	@Test
 	@DisplayName("Test to check whether the size of data is right or not")
 	void testToCheckSizeOfData() {
 		
-		assertEquals(matches.size(), 636);
+		int sizeOfMatch = Ipl.getMatchData().size();
+		
+		assertEquals(matches.size(), sizeOfMatch);
 	}
 	
 	@Test
@@ -48,6 +49,15 @@ class matchesPlayedPerYearTest {
 	void testToCheckNullInput() {
 		
 		assertThrows(NullPointerException.class, () -> Ipl.matchesPlayedPerYear(null),"This should throw an NullPointerException");
+	}
+	
+	@Test
+	@DisplayName("Test to check return type of result is same as input data")
+	void testToCheckReturnType() {
+		
+		String actual = "HashMap";
+		
+		assertEquals(Ipl.matchesPlayedPerYear(matches).getClass().getSimpleName(), actual);
 	}
 
 }

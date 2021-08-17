@@ -11,32 +11,50 @@ import org.junit.jupiter.api.Test;
 class matchesWonPerTeamPerYearTest {
 	
 	List<Match> matches = Ipl.getMatchData();
+	List<Match> sublistMatches = matches.subList(219, 249);
 
 	@Test
 	@DisplayName("Test to check for valid data..")
 	void testForValidData() {
-		
+		HashMap<String, Integer> winner1 = new HashMap<>();
+		HashMap<String, Integer> winner2 = new HashMap<>();
 		HashMap<String, HashMap<String, Integer>> matchesPlayedPerTeamPerYear = new HashMap<>();
 		
-		matchesPlayedPerTeamPerYear = Ipl.matchesWonPerTeamPerYear(matches);
+		winner1.put("Deccan Chargers", 3);
+		winner1.put("Mumbai Indians", 3);
+		winner1.put("Chennai Super Kings", 4);
+		winner1.put("Royal Challengers Bangalore", 2);
+		winner1.put("Delhi Daredevils", 1);
+		winner1.put("Kolkata Knight Riders", 2);
+		winner2.put("Chennai Super Kings", 2);
+		winner2.put("Rajasthan Royals", 2);
+		winner2.put("Royal Challengers Bangalore", 1);
+		winner2.put("Mumbai Indians", 2);
+		winner2.put("Pune Warriors", 2);
+		winner2.put("Kolkata Knight Riders", 2);
+		winner2.put("Kings XI Punjab", 2);
+		winner2.put("Deccan Chargers", 1);
+		winner2.put("Kochi Tuskers Kerala", 1);
+		matchesPlayedPerTeamPerYear.put("2010", winner1);
+		matchesPlayedPerTeamPerYear.put("2011", winner2);
 		
-		assertEquals(Ipl.matchesWonPerTeamPerYear(matches), matchesPlayedPerTeamPerYear,"This should not throw an error when valid data is passed.");
+		assertEquals(Ipl.matchesWonPerTeamPerYear(sublistMatches), matchesPlayedPerTeamPerYear,"This should not throw an error when valid data is passed.");
 	}
 	
 	@Test
-	@DisplayName("Test to check for not equal data..")
+	@DisplayName("Test to check if returned data is null or not")
 	void testForWrongData() {
 		
-		HashMap<String, HashMap<String, Integer>> wrongOutput = null;
-		
-		assertNotEquals(Ipl.matchesWonPerTeamPerYear(matches), wrongOutput,"This should throw an error when Invalid data is passed.");
+		assertNotNull(Ipl.matchesWonPerTeamPerYear(matches),"This should throw an error when Invalid data is passed.");
 	}
 	
 	@Test
 	@DisplayName("Test to check whether the size of data is right or not")
 	void testToCheckSizeOfData() {
 		
-		assertEquals(matches.size(), 636);
+		int sizeOfMatch = Ipl.getMatchData().size();
+		
+		assertEquals(matches.size(), sizeOfMatch);
 	}
 	
 	@Test
@@ -44,6 +62,15 @@ class matchesWonPerTeamPerYearTest {
 	void testToCheckNullInput() {
 		
 		assertThrows(NullPointerException.class, () -> Ipl.matchesWonPerTeamPerYear(null),"This should throw an NullPointerException");
+	}
+	
+	@Test
+	@DisplayName("Test to check return type of result is same as input data")
+	void testToCheckReturnType() {
+		
+		String actual = "HashMap";
+		
+		assertEquals(Ipl.matchesWonPerTeamPerYear(matches).getClass().getSimpleName(), actual);
 	}
 	
 }
