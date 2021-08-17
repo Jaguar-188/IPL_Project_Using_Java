@@ -22,15 +22,15 @@ class extraRunsConcededPerTeamTest {
 	void testForValidData() {
 		
 		HashMap<String, Integer> extraRunsConcededPerTeamAt2016 = new HashMap<>();
-		String year2016 = "2016";
+		String year = "2016";
 		
-		extraRunsConcededPerTeamAt2016 = Ipl.extraRunsConcededPerTeam(matches,deliveries,year2016);
+		extraRunsConcededPerTeamAt2016 = Ipl.extraRunsConcededPerTeam(matches,deliveries,year);
 		
-		assertEquals(Ipl.extraRunsConcededPerTeam(matches,deliveries,year2016), extraRunsConcededPerTeamAt2016,"This should not throw an error when valid data is passed.");
+		assertEquals(Ipl.extraRunsConcededPerTeam(matches,deliveries,year), extraRunsConcededPerTeamAt2016,"This should not throw an error when valid data is passed.");
 	}
 	
 	@Test
-	@DisplayName("Test to check for wrong data..")
+	@DisplayName("Test to check for not equal data..")
 	void testForWrongData() {
 		
 		HashMap<String, Integer> wrongOutput = null;
@@ -59,12 +59,13 @@ class extraRunsConcededPerTeamTest {
 	void testForDifferentYear() {
 		
 		HashMap<String, Integer> extraRunsConcededPerTeamAt2014 = new HashMap<>();
-		String year2014 = "2014";
+		String year = "2014";
 		
-		extraRunsConcededPerTeamAt2014 = Ipl.extraRunsConcededPerTeam(matches,deliveries,year2014);
+		extraRunsConcededPerTeamAt2014 = Ipl.extraRunsConcededPerTeam(matches,deliveries,year);
 		
-		assertEquals(Ipl.extraRunsConcededPerTeam(matches,deliveries,year2014), extraRunsConcededPerTeamAt2014,"This should not throw an error when valid data is passed.");
+		assertEquals(Ipl.extraRunsConcededPerTeam(matches,deliveries,year), extraRunsConcededPerTeamAt2014,"This should not throw an error when valid data is passed.");
 	}
+	
 	
 	
 

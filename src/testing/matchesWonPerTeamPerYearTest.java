@@ -24,7 +24,7 @@ class matchesWonPerTeamPerYearTest {
 	}
 	
 	@Test
-	@DisplayName("Test to check for wrong data..")
+	@DisplayName("Test to check for not equal data..")
 	void testForWrongData() {
 		
 		HashMap<String, HashMap<String, Integer>> wrongOutput = null;

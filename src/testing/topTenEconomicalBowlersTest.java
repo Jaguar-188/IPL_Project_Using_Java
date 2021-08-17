@@ -22,15 +22,15 @@ class topTenEconomicalBowlersTest {
 	void testForValidData() {
 		
 		HashMap<String, Double> topTenEconomicalBowlersAt2015 = new HashMap<>();
-		String year2015 = "2015";
+		String year = "2015";
 		
-		topTenEconomicalBowlersAt2015 = Ipl.topTenEconomicalBowlers(matches,deliveries,year2015);
+		topTenEconomicalBowlersAt2015 = Ipl.topTenEconomicalBowlers(matches,deliveries,year);
 		
-		assertEquals(Ipl.topTenEconomicalBowlers(matches,deliveries,year2015), topTenEconomicalBowlersAt2015,"This should not throw an error when valid data is passed.");
+		assertEquals(Ipl.topTenEconomicalBowlers(matches,deliveries,year), topTenEconomicalBowlersAt2015,"This should not throw an error when valid data is passed.");
 	}
 	
 	@Test
-	@DisplayName("Test to check for wrong data..")
+	@DisplayName("Test to check for not equal data..")
 	void testForWrongData() {
 		
 		HashMap<String, Double> wrongOutput = null;
@@ -59,11 +59,11 @@ class topTenEconomicalBowlersTest {
 	void testForDifferentYear() {
 		
 		HashMap<String, Double> topTenEconomicalBowlersAt2017 = new HashMap<>();
-		String year2017 = "2017";
+		String year = "2017";
 		
-		topTenEconomicalBowlersAt2017 = Ipl.topTenEconomicalBowlers(matches,deliveries,year2017);
+		topTenEconomicalBowlersAt2017 = Ipl.topTenEconomicalBowlers(matches,deliveries,year);
 		
-		assertEquals(Ipl.topTenEconomicalBowlers(matches,deliveries,year2017), topTenEconomicalBowlersAt2017,"This should not throw an error when valid data is passed.");
+		assertEquals(Ipl.topTenEconomicalBowlers(matches,deliveries,year), topTenEconomicalBowlersAt2017,"This should not throw an error when valid data is passed.");
 	}
 
 }
