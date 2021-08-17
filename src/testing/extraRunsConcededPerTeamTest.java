@@ -2,6 +2,8 @@ package testing;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,34 +19,30 @@ class extraRunsConcededPerTeamTest {
 	List<Match> matches = Ipl.getMatchData();
 	List<Delivery> deliveries = Ipl.getDeliveryData();
 
-	@Test
-	@DisplayName("Test to check for valid data..")
-	void testForValidData() {
-		
-		HashMap<String, Integer> extraRunsConcededPerTeamAt2016 = new HashMap<>();
-		String year = "2016";
-		
-		extraRunsConcededPerTeamAt2016 = Ipl.extraRunsConcededPerTeam(matches,deliveries,year);
-		
-		assertEquals(Ipl.extraRunsConcededPerTeam(matches,deliveries,year), extraRunsConcededPerTeamAt2016,"This should not throw an error when valid data is passed.");
-	}
+//	@Test
+//	@DisplayName("Test to check for valid data..")
+//	void testForValidData() {
+
+//	}
 	
 	@Test
-	@DisplayName("Test to check for not equal data..")
-	void testForWrongData() {
+	@DisplayName("Test to check if returned data is null or not")
+	void testForNotNull() {
 		
-		HashMap<String, Integer> wrongOutput = null;
-		String year2016 = "2016";
+		String year = "2016";
 		
-		assertNotEquals(Ipl.extraRunsConcededPerTeam(matches,deliveries,year2016), wrongOutput,"This should throw an error when Invalid data is passed.");
+		assertNotNull(Ipl.extraRunsConcededPerTeam(matches,deliveries,year),"This should throw an error when Invalid data is passed.");
 	}
 	
 	@Test
 	@DisplayName("Test to check whether the size of data is right or not")
 	void testToCheckSizeOfData() {
 		
-		assertEquals(matches.size(), 636);
-		assertEquals(deliveries.size(), 150460);
+		int sizeOfMatch = Ipl.getMatchData().size();
+		int sizeOfDelivery = Ipl.getDeliveryData().size();
+		
+		assertEquals(matches.size(), sizeOfMatch);
+		assertEquals(deliveries.size(), sizeOfDelivery);
 	}
 	
 	@Test
@@ -54,16 +52,24 @@ class extraRunsConcededPerTeamTest {
 		assertThrows(NullPointerException.class, () -> Ipl.extraRunsConcededPerTeam(null,null,null),"This should throw an NullPointerException");
 	}
 	
+	@Test()
+	@DisplayName("Test to check if empty data/list is passed")
+	void testForInvalidInput() {
+		
+		String year = "2016";
+		List<Delivery> empty = new ArrayList<>();
+		
+		assertThrows(EmptyStackException.class, () -> Ipl.extraRunsConcededPerTeam(matches,empty,year),"This should throw an Exception");
+	}
+	
 	@Test
-	@DisplayName("Test for different year")
-	void testForDifferentYear() {
+	@DisplayName("Test to check return type of function is same as data type of input data")
+	void testToCheckReturnType() {
 		
-		HashMap<String, Integer> extraRunsConcededPerTeamAt2014 = new HashMap<>();
-		String year = "2014";
+		String actual = "HashMap";
+		String year = "2016";
 		
-		extraRunsConcededPerTeamAt2014 = Ipl.extraRunsConcededPerTeam(matches,deliveries,year);
-		
-		assertEquals(Ipl.extraRunsConcededPerTeam(matches,deliveries,year), extraRunsConcededPerTeamAt2014,"This should not throw an error when valid data is passed.");
+		assertEquals(Ipl.extraRunsConcededPerTeam(matches,deliveries,year).getClass().getSimpleName(), actual);
 	}
 	
 	

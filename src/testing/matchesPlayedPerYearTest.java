@@ -30,7 +30,7 @@ class matchesPlayedPerYearTest {
 	
 	@Test
 	@DisplayName("Test to check if returned data is null or not")
-	void testForWrongData() {
+	void testForNotNull() {
 		
 		assertNotNull(Ipl.matchesPlayedPerYear(matches),"This should throw an error when Invalid data is passed.");
 	}
@@ -52,7 +52,7 @@ class matchesPlayedPerYearTest {
 	}
 	
 	@Test
-	@DisplayName("Test to check return type of result is same as input data")
+	@DisplayName("Test to check return type of function is same as data type of input data")
 	void testToCheckReturnType() {
 		
 		String actual = "HashMap";
