@@ -53,8 +53,8 @@ public class Ipl {
 
 		System.out.println("\n");
 		
-		String year2016 = "2016";
-		HashMap<String, Integer> extraRunsConcededPerTeam = extraRunsConcededPerTeam(matches,deliveries,year2016);
+		String year = "2016";
+		HashMap<String, Integer> extraRunsConcededPerTeam = extraRunsConcededPerTeam(matches,deliveries,year);
 		JSONObject extraRunsConcededPerTeamJson = new JSONObject(extraRunsConcededPerTeam);
 		JSONArray extraRunsConcededPerTeamArray = new JSONArray();
 		System.out.println("Extra Runs Conceded Per Team AT Year 2016:");
@@ -64,8 +64,8 @@ public class Ipl {
 		
 		System.out.println("\n");
 		
-		String year2015 = "2015";
-		HashMap<String, Double> topTenEconomicalBowlers  = topTenEconomicalBowlers(matches,deliveries,year2015);
+		String season = "2015";
+		HashMap<String, Double> topTenEconomicalBowlers  = topTenEconomicalBowlers(matches,deliveries,season);
 		JSONObject topTenEconomicalBowlersJson = new JSONObject(topTenEconomicalBowlers);
 		JSONArray topTenEconomicalBowlersArray = new JSONArray();
 		System.out.println("Top Ten Economical Bowlers AT Year 2015:");
@@ -99,7 +99,6 @@ public class Ipl {
 	
 	public static HashMap<String, HashMap<String, Integer>> matchesWonPerTeamPerYear(List<Match> matches) 
 	{
-		HashMap<String, Integer> winnerPerYear = new HashMap<String, Integer>();
 		HashMap<String, HashMap<String, Integer>> matchesWonPerTeamPerYear = new HashMap<String, HashMap<String, Integer>>();
 		if(matches.equals(null))
 		{
@@ -129,17 +128,17 @@ public class Ipl {
 		return matchesWonPerTeamPerYear;
 	}
 	
-	public static HashMap<String, Integer> extraRunsConcededPerTeam(List<Match> matches, List<Delivery> deliveries, String year2016) 
+	public static HashMap<String, Integer> extraRunsConcededPerTeam(List<Match> matches, List<Delivery> deliveries, String year) 
 	{
 		List<String> matchDataFiltered = new ArrayList<>();
 		HashMap<String, Integer> extraRunsConceded = new HashMap<String, Integer>();
-		if(matches.equals(null) && deliveries.equals(null) && year2016.equals(null))
+		if(matches.equals(null) && deliveries.equals(null) && year.equals(null))
 		{
 			return null;
 		}
 		for(Match match : matches)
 		{
-			if(match.getSeason().equals(year2016))
+			if(match.getSeason().equals(year))
 			{
 				matchDataFiltered.add(match.getMatchId());
 			}
@@ -169,7 +168,7 @@ public class Ipl {
 		return extraRunsConceded;	
 	}
 	
-	public static HashMap<String, Double> topTenEconomicalBowlers(List<Match> matches,List<Delivery> deliveries,String year2015)
+	public static HashMap<String, Double> topTenEconomicalBowlers(List<Match> matches,List<Delivery> deliveries,String season)
 	{
 		List<String> matchDataFiltered = new ArrayList<>();
 		HashMap<String, Double> totalRunsByEachBowler = new HashMap<String, Double>();
@@ -177,13 +176,13 @@ public class Ipl {
 		HashMap<String,Double> topEconomicalBowlers = new HashMap<String,Double>();
 		HashMap<String, Double> topTenEconomicalBowlers  = new HashMap<String,Double>();
 		
-		if(matches.equals(null) && deliveries.equals(null) && year2015.equals(null))
+		if(matches.equals(null) && deliveries.equals(null) && season.equals(null))
 		{
 			return null;
 		}
 		for(Match match : matches)
 		{
-			if(match.getSeason().equals(year2015))
+			if(match.getSeason().equals(season))
 			{
 				matchDataFiltered.add(match.getMatchId());
 			}
