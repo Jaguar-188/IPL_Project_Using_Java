@@ -19,11 +19,34 @@ class extraRunsConcededPerTeamTest {
 	List<Match> matches = Ipl.getMatchData();
 	List<Delivery> deliveries = Ipl.getDeliveryData();
 
-//	@Test
-//	@DisplayName("Test to check for valid data..")
-//	void testForValidData() {
-
-//	}
+	@Test
+	@DisplayName("Test to check for perticular team at perticular year")
+	void testForPerticularTeamAtPerticularYear() {
+		String year = "2013";
+		HashMap<String , Integer> extraRuns = new HashMap<>();
+		List<Match> sublistMatches = matches.subList(381,382);
+		for(Match match : sublistMatches)
+		{
+			for(Delivery delivery : deliveries)
+			{
+				if(delivery.getMatchId().equals(match.getMatchId()))
+				{
+					
+					if(extraRuns.containsKey(delivery.getBowlingTeam()))
+					{
+						extraRuns.put(delivery.getBowlingTeam(), extraRuns.get(delivery.getBowlingTeam()) + Integer.parseInt(delivery.getExtraRuns()));
+					}
+					else
+					{
+						extraRuns.put(delivery.getBowlingTeam(), Integer.parseInt(delivery.getExtraRuns()));
+					}
+				}
+			}
+		}
+		
+		assertEquals(Ipl.extraRunsConcededPerTeam(sublistMatches, deliveries, year), extraRuns);
+		
+	}
 	
 	@Test
 	@DisplayName("Test to check if returned data is null or not")
