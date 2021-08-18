@@ -4,9 +4,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.json.*;
 import org.junit.jupiter.api.DisplayName;
@@ -22,9 +25,73 @@ class topTenEconomicalBowlersTest {
 	List<Delivery> deliveries = Ipl.getDeliveryData();
 
 //	@Test
-//	@DisplayName("Test to check for valid data..")
-//	void testForValidData() {
-//		assertEquals(Ipl.topTenEconomicalBowlers(matches,deliveries,year), topTenEconomicalBowlersAt2015,"This should not throw an error when valid data is passed.");
+//	@DisplayName("Test to check for economy of perticular bowler")
+//	void testForEconomyOfPerticularBowler() {
+//		
+//		String year = "2012";
+//		String bowlerName = "SL Malinga";
+//		HashMap<String , Double> totalRunsbyBowler = new HashMap<>();
+//		HashMap<String , Double> totalBallsByBowler = new HashMap<>();
+//		HashMap<String , Double> economyOfBowler = new HashMap<>();
+//		HashMap<String , Double> topTeneconomyOfBowler = new HashMap<>();
+//		HashMap<String , Double> topTeneconomicalBowlers = new HashMap<>();
+//		List<Match> sublistMatches = matches.subList(307,380);
+//		for(Match match : sublistMatches)
+//		{
+//			for(Delivery delivery : deliveries)
+//			{
+//				if(delivery.getMatchId().equals(match.getMatchId()))
+//				{
+//					if(totalRunsbyBowler.containsKey(delivery.getBowler()))
+//					{
+//						totalRunsbyBowler.put(bowlerName, totalRunsbyBowler.get(delivery.getBowler()) + Double.parseDouble(delivery.getTotalRuns()));
+//						totalBallsByBowler.put(bowlerName, totalBallsByBowler.get(delivery.getBowler()) + Double.parseDouble(delivery.getBall()));
+//					}
+//					else
+//					{
+//						totalRunsbyBowler.put(delivery.getBowler(), Double.parseDouble(delivery.getTotalRuns()));
+//						totalBallsByBowler.put(delivery.getBowler(), Double.parseDouble(delivery.getBall()));
+//					}
+//				}
+//			}
+//		}
+//		
+//		for(Map.Entry<String, Double> runs : totalRunsbyBowler.entrySet())
+//		{
+//			for(Map.Entry<String, Double> balls : totalBallsByBowler.entrySet())
+//			{
+//				if(runs.getKey().equals(balls.getKey()))
+//				{
+//					economyOfBowler.put(runs.getKey(),runs.getValue()/(balls.getValue()/6));
+//				}
+//			}
+//		}
+//		//System.out.println(economyOfBowler);
+//		List<Map.Entry<String, Double>> list = new ArrayList<>(economyOfBowler.entrySet());
+//		
+//		Collections.sort(list, new Comparator<Map.Entry<String, Double>>() {
+//			public int compare(Map.Entry<String, Double> c1,Map.Entry<String, Double> c2)
+//			{
+//				return c1.getValue().compareTo(c2.getValue());
+//			}
+//		});
+//		
+//		int temp = 0;
+//		for(Map.Entry<String, Double> entry : list)
+//		{
+//			temp++;
+//			if(temp == 10)
+//			{
+//				break;
+//			}
+//			topTeneconomyOfBowler.put(entry.getKey(), entry.getValue());
+//		}
+//		System.out.println("++"+topTeneconomyOfBowler);
+//		topTeneconomicalBowlers = Ipl.topTenEconomicalBowlers(matches, deliveries, year);
+//		System.out.println("--"+topTeneconomicalBowlers);
+//		//assertEquals(Ipl.extraRunsConcededPerTeam(sublistMatches, deliveries, year), extraRuns);
+//		
+//		//assertEquals(Ipl.topTenEconomicalBowlers(matches,deliveries,year), topTenEconomicalBowlersAt2015,"This should not throw an error when valid data is passed.");
 //	}
 	
 	@Test
